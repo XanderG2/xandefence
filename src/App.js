@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Map from "./classes/Map";
-
+const TICK_INTERVAL = 50;
 const map = new Map();
 
 function App() {
@@ -10,8 +10,10 @@ function App() {
     setRenders(renders + 1);
   }, [renders]);
   const tick = () => {
-    map.tick();
-    rerender();
+    if (map.state == "PLAYING") {
+      map.tick();
+      rerender();
+    }
   };
   const tickerRef = React.useRef(tick);
   React.useEffect(() => {
@@ -30,7 +32,10 @@ function App() {
         clearInterval(timerRef.current);
         timerRef.current = null;
       } else {
-        timerRef.current = setInterval(() => tickerRef.current(), 100);
+        timerRef.current = setInterval(
+          () => tickerRef.current(),
+          TICK_INTERVAL
+        );
       }
       rerender();
     },
@@ -65,6 +70,8 @@ function App() {
         <span onClick={togglePlay}>{timerRef.current ? "Pause" : "Play"}</span>{" "}
         <span onClick={handleStep}>Step</span>
       </footer>
+      {map.state == "WIN" ? <div className="end">You won!</div> : null}
+      {map.state == "LOSE" ? <div className="end">You lost!</div> : null}
     </div>
   );
 }

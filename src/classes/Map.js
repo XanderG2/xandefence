@@ -1,4 +1,5 @@
 import Enemy from "./Enemy";
+
 export default class Map {
   size = 200;
   enemies = [new Enemy()];
@@ -10,6 +11,7 @@ export default class Map {
   coins = 1000;
   hp = 100;
   maxHp = 100;
+  state = "PLAYING";
 
   tick() {
     this.tickNumber++;
@@ -18,7 +20,7 @@ export default class Map {
       enemy.tick();
       if (enemy.pos > this.size) {
         this.hp -= enemy.hp;
-        this.removeEnemy(enemy);
+        //this.removeEnemy(enemy);
       }
     }
 
@@ -38,14 +40,13 @@ export default class Map {
       this.tickNumber = 0;
       if (this.waves.length > 0) {
         this.queue = this.waves[this.waveNumber].queue;
-        alert("Next wave");
       } else {
-        alert("You win");
+        this.state = "WIN";
       }
     }
   }
 
   lose() {
-    alert("You lose");
+    this.state = "LOSE";
   }
 }
