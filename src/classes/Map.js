@@ -12,15 +12,22 @@ export default class Map {
   hp = 100;
   maxHp = 100;
   state = "PLAYING";
-
+  removeEnemy(enemy) {
+    const index = this.enemies.indexOf(enemy);
+    if (index >= 0) {
+      this.enemies.splice(index, 1);
+    }
+  }
   tick() {
     this.tickNumber++;
     // Advance
     for (const enemy of this.enemies) {
       enemy.tick();
-      if (enemy.pos > this.size) {
+      if (enemy.isDead()) {
+        this.removeEnemy(enemy);
+      } else if (enemy.pos > this.size) {
         this.hp -= enemy.hp;
-        //this.removeEnemy(enemy);
+        this.removeEnemy(enemy);
       }
     }
 
