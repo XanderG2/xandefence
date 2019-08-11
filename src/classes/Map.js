@@ -1,16 +1,21 @@
-import Enemy from "./Enemy";
+import Wave from "./Wave";
+import NPCVillager from "./enemies/NPCVillager";
+import PlayerNoob from "./enemies/PlayerNoob";
 
 export default class Map {
   size = 200;
-  enemies = [new Enemy()];
+  enemies = [];
   slots = [];
   queue = []; // including when
   tickNumber = 0;
-  waveNumber = 0;
-  waves = []; // what and when for each wave
+  waveNumber = -1;
+  waves = [
+    new Wave(100, [[NPCVillager, 10]]),
+    new Wave(200, [[NPCVillager, 20], [PlayerNoob, 4]])
+  ]; // what and when for each wave
   coins = 1000;
-  hp = 100;
-  maxHp = 100;
+  maxHp = 20;
+  hp = this.maxHp;
   state = "PLAYING";
   removeEnemy(enemy) {
     const index = this.enemies.indexOf(enemy);
@@ -37,6 +42,13 @@ export default class Map {
     }
 
     // Spawn
+    while (this.queue.length > 0 && this.queue[0][1] <= this.tickNumber) {
+      const tuple = this.queue.shift();
+      const enemy = tuple[0];
+      this.enemies.push(enemy);
+    }
+
+    // Kill
     for (const slot of this.slots) {
       slot.tick();
     }
@@ -45,8 +57,8 @@ export default class Map {
     if (this.enemies.length === 0 && this.queue.length === 0) {
       this.waveNumber++;
       this.tickNumber = 0;
-      if (this.waves.length > 0) {
-        this.queue = this.waves[this.waveNumber].queue;
+      if (this.waves.length > this.waveNumber) {
+        this.queue = [...this.waves[this.waveNumber].queue];
       } else {
         this.state = "WIN";
       }

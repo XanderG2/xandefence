@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Map from "./classes/Map";
-const TICK_INTERVAL = 50;
+const TICK_INTERVAL = 30;
 const map = new Map();
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
 
   const enemies = map.enemies.map(enemy => (
     <div className="enemy" style={{ left: (enemy.pos / map.size) * 100 + "%" }}>
-      E
+      {enemy.render()}
     </div>
   ));
 

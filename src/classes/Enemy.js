@@ -1,3 +1,5 @@
+import React from "react";
+
 export default class Enemy {
   hp = 1;
   pos = 0;
@@ -10,5 +12,9 @@ export default class Enemy {
 
   isDead() {
     return this.hp <= 0;
+  }
+
+  render() {
+    return <span>E</span>;
   }
 }
