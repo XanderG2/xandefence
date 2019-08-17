@@ -58,12 +58,15 @@ footer {
 }
 main {
   background-color: gray;
+  display: flex;
   flex: 1 0 0;
+  align-items: center;
 }
 .map {
   display: flex;
   position: relative;
   height: 5rem;
+  width: 100%;
 }
 .entry,
 .exit {
