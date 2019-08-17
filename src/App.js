@@ -53,7 +53,20 @@ function App() {
       {enemy.renderWithHealthBar()}
     </div>
   ));
-
+  const upperSlots = map.slots
+    .filter(slot => slot.up)
+    .map(slot => (
+      <div className="slot" style={{ left: (slot.pos / map.size) * 100 + "%" }}>
+        S
+      </div>
+    ));
+  const lowerSlots = map.slots
+    .filter(slot => !slot.up)
+    .map(slot => (
+      <div className="slot" style={{ left: (slot.pos / map.size) * 100 + "%" }}>
+        S
+      </div>
+    ));
   return (
     <div className="App">
       <header>
@@ -65,11 +78,13 @@ function App() {
         </div>
       </header>
       <main>
+        <div className="upperSlots">{upperSlots}</div>
         <div className="map">
           <div className="entry" />
           <div className="course">{enemies}</div>
           <div className="exit" />
         </div>
+        <div className="lowerSlots">{lowerSlots}</div>
       </main>
       <footer>
         Wave {map.waveNumber + 1}, tick {map.tickNumber}{" "}

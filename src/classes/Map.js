@@ -1,11 +1,12 @@
 import Wave from "./Wave";
 import NPCVillager from "./enemies/NPCVillager";
 import PlayerNoob from "./enemies/PlayerNoob";
+import Slot from "./Slot";
 
 export default class Map {
   size = 200;
   enemies = [];
-  slots = [];
+  slots = [new Slot(30, true), new Slot(30, false)];
   queue = []; // including when
   tickNumber = 0;
   waveNumber = -1;
