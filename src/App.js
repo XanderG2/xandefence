@@ -27,7 +27,9 @@ function App() {
   const timerRef = React.useRef(null);
   const togglePlay = React.useCallback(
     e => {
-      e.preventDefault();
+      if (e) {
+        e.preventDefault();
+      }
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -42,9 +44,13 @@ function App() {
     [rerender]
   );
 
+  React.useEffect(() => {
+    togglePlay();
+  }, []);
+
   const enemies = map.enemies.map(enemy => (
     <div className="enemy" style={{ left: (enemy.pos / map.size) * 100 + "%" }}>
-      {enemy.render()}
+      {enemy.renderWithHealthBar()}
     </div>
   ));
 

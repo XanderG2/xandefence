@@ -10,8 +10,8 @@ export default class Map {
   tickNumber = 0;
   waveNumber = -1;
   waves = [
-    new Wave(100, [[NPCVillager, 10]]),
-    new Wave(200, [[NPCVillager, 20], [PlayerNoob, 4]])
+    new Wave(2, [[NPCVillager, 10]]),
+    new Wave(5, [[NPCVillager, 20], [PlayerNoob, 4]])
   ]; // what and when for each wave
   coins = 1000;
   maxHp = 20;

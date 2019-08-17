@@ -1,14 +1,18 @@
 .healthBar {
-  width: 60%;
-  margin: 0 auto;
-  height: 1rem;
   background-color: red;
-  margin-top: 0.5rem;
 }
 .healthBarHealth {
   background-color: green;
   width: 70%;
   height: 100%;
+  display: block;
+}
+
+header .healthBar {
+  width: 60%;
+  margin: 0 auto;
+  height: 1rem;
+  margin-top: 0.5rem;
 }
 
 html,
@@ -53,7 +57,7 @@ footer {
   background-color: rgb(122, 43, 43);
 }
 main {
-  background-color: green;
+  background-color: gray;
   flex: 1 0 0;
 }
 .map {
@@ -74,7 +78,22 @@ main {
   position: absolute;
   top: 50%;
   width: 1rem;
-  height: 1rem;
+  height: 1.2rem;
   margin: -0.5rem -0.5rem;
   text-align: center;
+}
+.enemyWithBar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+  line-height: 1rem;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.enemyWithBar .healthBar {
+  flex: 0 0 0.2rem;
 }
