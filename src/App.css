@@ -6,6 +6,7 @@
   width: 70%;
   height: 100%;
   display: block;
+  transition: width 0.4s ease-out;
 }
 
 header .healthBar {
