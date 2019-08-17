@@ -53,20 +53,13 @@ function App() {
       {enemy.renderWithHealthBar()}
     </div>
   ));
-  const upperSlots = map.slots
-    .filter(slot => slot.up)
-    .map(slot => (
-      <div className="slot" style={{ left: (slot.pos / map.size) * 100 + "%" }}>
-        S
-      </div>
-    ));
-  const lowerSlots = map.slots
-    .filter(slot => !slot.up)
-    .map(slot => (
-      <div className="slot" style={{ left: (slot.pos / map.size) * 100 + "%" }}>
-        S
-      </div>
-    ));
+  const renderSlot = slot => (
+    <div className="slot" style={{ left: (slot.pos / map.size) * 100 + "%" }}>
+      {slot.tower ? slot.tower.cooldown : null}
+    </div>
+  );
+  const upperSlots = map.slots.filter(slot => slot.up).map(renderSlot);
+  const lowerSlots = map.slots.filter(slot => !slot.up).map(renderSlot);
   return (
     <div className="App">
       <header>

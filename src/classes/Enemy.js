@@ -15,6 +15,10 @@ export default class Enemy {
     return this.hp <= 0;
   }
 
+  attack(damage) {
+    this.hp -= damage;
+  }
+
   render() {
     return <span>E</span>;
   }

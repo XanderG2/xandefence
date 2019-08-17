@@ -6,7 +6,12 @@ import Slot from "./Slot";
 export default class Map {
   size = 200;
   enemies = [];
-  slots = [new Slot(30, true), new Slot(30, false)];
+  slots = [
+    new Slot(30, true),
+    new Slot(60, false),
+    new Slot(50, true),
+    new Slot(100, false)
+  ];
   queue = []; // including when
   tickNumber = 0;
   waveNumber = -1;
@@ -51,7 +56,7 @@ export default class Map {
 
     // Kill
     for (const slot of this.slots) {
-      slot.tick();
+      slot.tick(this.enemies);
     }
 
     // Check for end of wave

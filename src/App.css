@@ -73,6 +73,7 @@ main {
 .exit {
   background-color: white;
   width: 2rem;
+  z-index: 1;
 }
 .course {
   flex: 1 0 0;
