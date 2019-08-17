@@ -17,10 +17,12 @@ export default class Map {
   waveNumber = -1;
   waves = [
     new Wave(2, [[NPCVillager, 10]]),
-    new Wave(5, [[NPCVillager, 20], [PlayerNoob, 4]])
+    new Wave(5, [[NPCVillager, 20], [PlayerNoob, 4]]),
+    new Wave(10, [[NPCVillager, 10], [PlayerNoob, 5]]),
+    new Wave(15, [[NPCVillager, 25], [PlayerNoob, 8]])
   ]; // what and when for each wave
   coins = 1000;
-  maxHp = 20;
+  maxHp = 50;
   hp = this.maxHp;
   state = "PLAYING";
   removeEnemy(enemy) {

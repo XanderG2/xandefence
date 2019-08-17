@@ -66,7 +66,7 @@ function App() {
         <div className="healthBar">
           <div
             className="healthBarHealth"
-            style={{ width: (100 * map.hp) / map.maxHp + "%" }}
+            style={{ width: (100 * Math.max(0, map.hp)) / map.maxHp + "%" }}
           />
         </div>
       </header>

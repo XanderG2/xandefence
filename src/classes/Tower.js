@@ -1,6 +1,6 @@
 export default class Tower {
-  range = 10;
-  aoe = false;
+  range = 5;
+  aoe = true;
   reloadSpeed = 3;
   cooldown = this.reloadSpeed;
   effect = null;

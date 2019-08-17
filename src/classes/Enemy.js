@@ -2,10 +2,14 @@ import React from "react";
 
 export default class Enemy {
   maxHp = 10;
-  hp = this.maxHp;
+  hp = 0;
   pos = 0;
   speed = 1;
   effects = []; // Includes duration
+
+  constructor() {
+    this.hp = this.maxHp;
+  }
 
   tick() {
     this.pos += this.speed;
